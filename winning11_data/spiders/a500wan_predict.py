@@ -9,8 +9,8 @@ class predictSpider(Spider):
     name = "predict"  
     allowed_domains = []
     start_urls = []
-    start_date = datetime(2018,9,14)
-    end_date = datetime(2018,9,15)
+    start_date = datetime.now()
+    end_date = start_date + timedelta(1)
     while start_date<end_date:
         start_urls.append(start_date.strftime("http://odds.500.com/index_jczq_%Y-%m-%d.shtml"))
         start_date+=timedelta(1)

@@ -9,8 +9,8 @@ class detailSpider(Spider):
     name = "detail"  
     allowed_domains = []
     start_urls = []
-    start_date = datetime(2018,9,13)
-    end_date = datetime(2018,9,14)
+    start_date = datetime.now() - timedelta(1)
+    end_date = datetime.now()
     while start_date<end_date:
         start_urls.append(start_date.strftime("http://odds.500.com/index_jczq_%Y-%m-%d.shtml"))
         start_date+=timedelta(1)
