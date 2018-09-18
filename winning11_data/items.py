@@ -16,6 +16,7 @@ class Winning11DataItem(scrapy.Item):
     score = scrapy.Field()
     match_round = scrapy.Field()
     match_time = scrapy.Field()
+    match_time_ts = scrapy.Field()
     gamble_company = scrapy.Field()
     home_water = scrapy.Field()
     match_gain = scrapy.Field()

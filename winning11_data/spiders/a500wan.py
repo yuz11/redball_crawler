@@ -3,6 +3,11 @@ from scrapy.spiders import Spider
 from scrapy_splash import SplashRequest
 from winning11_data.items import Winning11DataItem
 from datetime import datetime,timedelta
+
+def toTs(date_str):
+    import time
+    return time.mktime(time.strptime(date_str, "%Y-%m-%d %H:%M"))
+
 class winSpider(Spider):  
     name = "win"  
     allowed_domains = ["odds.500.com"]
@@ -20,6 +25,9 @@ class winSpider(Spider):
     def parse(self, response):
         parse_item = Winning11DataItem()
         items = response.xpath('//div[@id="bd"]/table//tbody[@id="main-tbody"]/tr')
+        import re
+        date_str = re.findall("http://odds.500.com/index_jczq_(.*?).shtml",response.url)[0]
+        date_arr = date_str.split('-')
         for item in items:
             try:
                 teams = item.xpath('.//a[@class="team_link"]/@title').extract()
@@ -32,6 +40,8 @@ class winSpider(Spider):
                 details = item.xpath('.//td/text()').extract()
                 parse_item["match_round"] = details[0].encode('utf-8')
                 parse_item["match_time"] = details[1].encode('utf-8')
+                parse_item["match_time"] = date_arr[0]+'-'+parse_item["match_time"]
+                parse_item["match_time_ts"] = toTs(parse_item["match_time"])
                 parse_item["gamble_company"] = details[2].encode('utf-8')
                 parse_item["home_water"] = details[3].encode('utf-8')
                 parse_item["match_gain"] = details[4].encode('utf-8')
