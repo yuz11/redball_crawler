@@ -19,14 +19,16 @@ class Winning11DataPipeline(object):
             item_dict = {}
             for key,value in item.items():
             	item_dict[key] = value
-            self.client.data_500wan.recent_games.insert(item_dict)
+            self.client.data_500wan.games_delta.insert(item_dict)
         elif isinstance(item,PredictDataItem):
+            print "find One predict"
             item_dict = {}
             for key,value in item.items():
                 item_dict[key] = value
-            self.client.data_500wan.predict.insert(item_dict)
+            self.client.data_500wan.predict_delta.insert(item_dict)
         else:
+            print "find One detail"
             item_dict = {}
             for key,value in item.items():
                 item_dict[key] = value
-            self.client.data_500wan.detail_games.insert(item_dict)
+            self.client.data_500wan.detail_delta.insert(item_dict)

@@ -90,6 +90,7 @@ DOWNLOADER_MIDDLEWARES = {
     #'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 120,
     #'winning11_data.middlewares.IpProxyMiddleware': 113,
     'winning11_data.middlewares.Winning11DataDownloaderMiddleware': 543,
+    #'winning11_data.middlewares.ChromeClickMiddleware': 545,
     'scrapy_splash.SplashCookiesMiddleware': 723,
     'scrapy_splash.SplashMiddleware': 725,
     'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
